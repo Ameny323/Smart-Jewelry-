@@ -28,12 +28,12 @@ All functionalities are wrapped in a **modern, intuitive GUI**, making daily ope
 - **Product Management** – Manage jewelry items with real-time updates  
 - **Employee Management** – Control employee data and access  
 - **Order Management** – Handle purchases, delivery, and invoices  
-- **Scanning Button for VIP Access** – Only employees can unlock VIP storage  
+- **Scanning card for VIP Access** – Only employees can unlock VIP storage  
 - **Modern UI** – Built with Qt signals, slots, and custom styles
 
 ### 🔌 Hardware (Arduino Simulation)
 
-- **Access Control** – Simulated with a push button and buzzer  
+- **Access Control** – Simulated with a card and buzzer  
 - **Fire Alarm System** – Detects smoke and simulates water sprinklers  
 - **Emergency Alert** – Activates buzzer for intrusions or fire  
 - **Sensor Simulation** – MQ2 sensor, Servo motor, LEDs, etc.
@@ -160,7 +160,7 @@ Click Upload to flash the board
 
 | 🔧 **Feature**             | 🧪 **Test Description**                                                |
 | -------------------------- | ----------------------------------------------------------------------  |
-| 🔐 **Access Button**       | Press the button → Buzzer sounds and **LED indicates unlock**           |
+| 🔐 **Access Button**       | Scan the card → Buzzer sounds and **LED indicates unlock**           |
 | 🔥 **Fire Alarm**          | Simulate smoke with MQ2 sensor → **Alarm** and **sprinklers activate**  |
 | 👨‍💼 **Employee Section**    | Register a new employee → **Verify secure VIP area access**             |
 | 📊 **Reports**             | Perform actions → Check **real-time dashboard** for updates             |
