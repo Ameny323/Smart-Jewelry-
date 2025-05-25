@@ -61,54 +61,90 @@ All functionalities are wrapped in a **modern, intuitive GUI**, making daily ope
 [🔗Canva](https://www.canva.com/design/DAFwTWjroDM/vlxWiKhmTLtvSAmznBw2Ow/edit?utm_content=DAFwTWjroDM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ---
-📦 Installation Guide
-1️⃣ Clone the Project
-bash
-Copier
-Modifier
+
+## 📦 Installation
+
+1- Open a terminal or command prompt and run:
+```bash
 git clone https://github.com/Ameny323/Smart-Jewelry-.git
-2️⃣ Open the Project in Qt Creator
-Launch Qt Creator
+cd Smart-Jewelry
 
-Open:
-produis/Gestion_Produit.pro
+2. Open the Project in Qt Creator
+Launch Qt Creator.
 
-3️⃣ Set Up the Database
-Start WampServer
+Open the Gestion_Produit.pro file located in produis Directory.
 
-Visit: http://localhost/phpmyadmin
+3. Set Up the Database
+Start WampServer.
 
-Create a new database: bijouterie
+Open your browser and go to http://localhost/phpmyadmin.
 
-Import the SQL file:
+Create a new database (e.g., bijouterie).
+
+Import the SQL dump file located at:
 database/bijouterie.sql
 
-4️⃣ Configure Database Connection
-File: src/connection.cpp
+🔄 Update Database Connection
+You will find a file named connection.cpp, which is responsible for configuring the database connection to MySQL.
 
-cpp
-Copier
-Modifier
-db = QSqlDatabase::addDatabase("QODBC");
-db.setDatabaseName("bijouterie");  // Replace with your DB name
-db.setUserName("root");            // Your MySQL username
-db.setPassword("");                // Your MySQL password
-🔁 Checklist
+To connect the application to your local MySQL database, follow these steps:
 
-✅ Step	Check
-WampServer running	✅
-MySQL ODBC 8.0 driver installed	✅
-Database created & imported	✅
-connection.cpp updated properly	✅
+📁 Step 1: Open the File
+Navigate to:
+src/connection.cpp
 
-5️⃣ Launch the Application
-In Qt Creator → Press Ctrl + R or click Run
+🧩 Step 2: Locate the Following Code
+#include "connection.h"
 
-🔌 Arduino Setup
-✅ Requirements
-Arduino Uno / Mega
+Connection::Connection(){}
 
-Arduino IDE 1.8.19
+bool Connection::createconnection()
+{
+    db = QSqlDatabase::addDatabase("QODBC");
+    bool test = false;
+    db.setDatabaseName("Gestion_Produit");  // Replace with your DB name
+    db.setUserName("amani");                // Replace with your username
+    db.setPassword("amani");                // Replace with your password
+
+    if (db.open())
+        test = true;
+
+    return test;
+}
+
+void Connection::closeConnection() {
+    db.close();
+}
+
+🛠️ Step 3: Customize the Configuration
+
+| Code Line                               | Replace With                              |
+| --------------------------------------- | ----------------------------------------- |
+| `db.setDatabaseName("Gestion_Produit")` | Your database name (e.g., `"bijouterie"`) |
+| `db.setUserName("amani")`               | Your MySQL username                       |
+| `db.setPassword("amani")`               | Your MySQL password                       |
+
+
+✅ Final Checklist: Ensure Successful Database Connection
+Before running the application, make sure the following are in place:
+
+✅ WampServer is running
+Launch WampServer and verify that the icon is green in the system tray.
+
+✅ MySQL ODBC 8.0 Driver is installed
+You can download it from the official MySQL website if not already installed.
+
+✅ Database exists in phpMyAdmin
+Go to http://localhost/phpmyadmin and confirm that your database (e.g., bijouterie) has been created and imported.
+
+✅ Qt connection settings are correctly updated
+Ensure you've modified connection.cpp with the correct database name, username, and password.
+
+✅ Rebuild and launch the application
+Press Ctrl + R or click Run in Qt Creator to start the app.
+
+
+🔌 ARDUINO SETUP
 
 🧩 Steps
 Connect Arduino to PC via USB
@@ -119,63 +155,15 @@ Select correct COM port
 
 Click Upload to flash the board
 
-🔗 Hardware Wiring (Simulation)
-Component	Purpose
-Push Button	Access control for VIP entry
-Buzzer	Alerts for intrusions/fire
-MQ2 Sensor	Fire detection
-Servo Motor	Simulate door/gate movement
-LEDs	Visual indicators (e.g., access)
 
 🧪 Feature Testing Guide
-Feature	Test Description
-👥 Client Management	Add/edit/delete client records
-🔐 Access Button	Press → Buzzer sounds + LED unlocks
-🔥 Fire Alarm	Simulate smoke → Alarm + sprinklers activate
-👨‍💼 Employee Section	Register employee → Secure access verification
-📊 Reports	Trigger actions → Check dashboard live updates
 
-🤝 Contributing
-Feel free to fork the repo, open issues, and submit pull requests to enhance this project!
-
-📫 Contact
-For any queries or suggestions, contact:
-Ameny323 – GitHub Profile
-
-Let me know if you'd like a PDF version, website-ready markdown, or animated walkthrough slides!
-
-
-
-
-
-
-Vous avez dit :
- 🔌 Arduino Setup make ot n=bigger and bold in readme
-
-
-ChatGPT a dit :
-Here’s your updated 🔌 Arduino Setup section in a visually well-structured and bold, prominent format for the README:
-
-🔌 ARDUINO SETUP
-1️⃣ Connect Your Arduino Board
-Recommended Boards: Arduino Uno or Arduino Mega
-
-Connect the board to your PC via USB cable
-
-2️⃣ Open the Arduino IDE
-Launch the Arduino IDE
-
-Open the main sketch located at:
-
-bash
-Copier
-Modifier
-arduino/arduino_main.ino
-3️⃣ Upload the Sketch
-Select the correct COM port for your board
-
-Click Upload to flash the program onto the Arduino
-
+| 🔧 **Feature**             | 🧪 **Test Description**                                                |
+| -------------------------- | ----------------------------------------------------------------------  |
+| 🔐 **Access Button**       | Press the button → Buzzer sounds and **LED indicates unlock**           |
+| 🔥 **Fire Alarm**          | Simulate smoke with MQ2 sensor → **Alarm** and **sprinklers activate**  |
+| 👨‍💼 **Employee Section**    | Register a new employee → **Verify secure VIP area access**             |
+| 📊 **Reports**             | Perform actions → Check **real-time dashboard** for updates             |
 
 
 📫 Contact
