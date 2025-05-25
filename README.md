@@ -67,7 +67,6 @@ bash
 Copier
 Modifier
 git clone https://github.com/Ameny323/Smart-Jewelry-.git
-cd Smart-Jewelry
 2️⃣ Open the Project in Qt Creator
 Launch Qt Creator
 
